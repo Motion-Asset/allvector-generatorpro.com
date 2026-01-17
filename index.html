@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignBrief Pro - AI ডিজাইন জেনারেটর</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="ব্রিফ থেকে সম্পূর্ণ ডিজাইন ফাইল তৈরি করুন। লোগো, আইকন, UI কম্পোনেন্টস - সবকিছু AI দিয়ে তৈরি করুন।">
+    <meta name="keywords" content="AI ডিজাইন, লোগো তৈরি, ভেক্টর জেনারেটর, ডিজাইন ফাইল, বাংলা ওয়েবসাইট">
+    <meta name="author" content="DesignBrief Pro">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="DesignBrief Pro - AI ডিজাইন জেনারেটর">
+    <meta property="og:description" content="ব্রিফ থেকে সম্পূর্ণ ডিজাইন ফাইল তৈরি করুন">
+    <meta property="og:image" content="assets/images/og-image.png">
+    <meta property="og:url" content="https://designbrief.pro">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DesignBrief Pro">
+    <meta name="twitter:description" content="AI দিয়ে ডিজাইন ফাইল তৈরি করুন">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .bengali {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+<!-- Navigation Bar -->
+<nav class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 fixed w-full z-50">
+    <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-paint-brush text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">Design<span class="text-blue-400">Brief</span> Pro</h1>
+                    <p class="text-xs text-gray-400">AI ডিজাইন জেনারেটর</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="hover:text-blue-400 transition">হোম</a>
+                <a href="#features" class="hover:text-blue-400 transition">ফিচার</a>
+                <a href="#how-to-use" class="hover:text-blue-400 transition">ব্যবহার করুন</a>
+                <a href="#pricing" class="hover:text-blue-400 transition">প্রাইসিং</a>
+                <a href="#contact" class="hover:text-blue-400 transition">যোগাযোগ</a>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="flex items-center space-x-4">
+                <button onclick="showLoginModal()" class="hidden md:inline px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition">
+                    <i class="fas fa-sign-in-alt mr-2"></i>লগইন
+                </button>
+                <button onclick="showSignupModal()" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 rounded-lg font-medium transition">
+                    <i class="fas fa-rocket mr-2"></i>ফ্রি ট্রায়াল
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden mt-4 hidden bg-gray-800 rounded-lg p-4">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="py-2 hover:text-blue-400">হোম</a>
+                <a href="#features" class="py-2 hover:text-blue-400">ফিচার</a>
+                <a href="#how-to-use" class="py-2 hover:text-blue-400">ব্যবহার করুন</a>
+                <a href="#pricing" class="py-2 hover:text-blue-400">প্রাইসিং</a>
+                <a href="#contact" class="py-2 hover:text-blue-400">যোগাযোগ</a>
+                <button onclick="showLoginModal()" class="py-2 bg-gray-700 rounded-lg">
+                    <i class="fas fa-sign-in-alt mr-2"></i>লগইন
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="pt-32 pb-20 px-4">
+    <div class="container mx-auto text-center">
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-900/30 text-blue-300 text-sm mb-6 border border-blue-700/30">
+            <i class="fas fa-star mr-2"></i>
+            <span>বাংলাদেশের প্রথম AI ডিজাইন প্লাটফর্ম</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            ব্রিফ থেকে <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">সম্পূর্ণ ডিজাইন</span><br>
+            এক ক্লিকে তৈরি করুন
+        </h1>
+        
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-10 bengali">
+            শুধু আপনার আইডিয়া লিখুন, AI আপনার জন্য লোগো, আইকন, UI কম্পোনেন্টস, এবং সম্পূর্ণ ডিজাইন সিস্টেম তৈরি করবে।
+        </p>
+        
+        <div class="flex flex-col md:flex-row gap-4 justify-center mb-16">
+            <button onclick="startCreating()" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 rounded-xl text-lg font-bold transition-all transform hover:-translate-y-1">
+                <i class="fas fa-magic mr-3"></i>
+                এখনই তৈরি শুরু করুন
+            </button>
+            <button onclick="scrollToFeatures()" class="px-8 py-4 bg-gray-800 hover:bg-gray-700 rounded-xl text-lg transition">
+                <i class="fas fa-play-circle mr-3"></i>
+                ভিডিও টিউটোরিয়াল
+            </button>
+        </div>
+        
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div class="bg-gray-800/50 p-6 rounded-xl">
+                <div class="text-3xl font-bold text-blue-400">১০,০০০+</div>
+                <div class="text-gray-300 bengali">ডিজাইন তৈরি</div>
+            </div>
+            <div class="bg-gray-800/50 p-6 rounded-xl">
+                <div class="text-3xl font-bold text-green-400">১০০%</div>
+                <div class="text-gray-300 bengali">এডিটেবল ফাইল</div>
+            </div>
+            <div class="bg-gray-800/50 p-6 rounded-xl">
+                <div class="text-3xl font-bold text-purple-400">২৪/৭</div>
+                <div class="text-gray-300 bengali">AI অ্যাসিস্ট্যান্ট</div>
+            </div>
+            <div class="bg-gray-800/50 p-6 rounded-xl">
+                <div class="text-3xl font-bold text-yellow-400">মিনিট</div>
+                <div class="text-gray-300 bengali">দ্রুত জেনারেশন</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 px-4 bg-gray-900/50">
+    <div class="container mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">আমাদের বিশেষ ফিচারসমূহ</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto bengali">
+                সবচেয়ে এডভান্সড AI টেকনোলজি ব্যবহার করে প্রফেশনাল ডিজাইন ফাইল তৈরি করুন
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700 hover:border-blue-500 transition group">
+                <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <i class="fas fa-robot text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">AI ডিজাইন জেনারেশন</h3>
+                <p class="text-gray-300 mb-4 bengali">
+                    শুধু বাংলা বা ইংরেজিতে আপনার আইডিয়া লিখুন, AI বাকি কাজ করবে। 
+                    লোগো, আইকন, ব্যানার - সবকিছু তৈরি হবে।
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-sm">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                        <span>বাংলাদেশি স্টাইল সাপোর্ট</span>
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                        <span>১০০+ ডিজাইন টেমপ্লেট</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700 hover:border-purple-500 transition group">
+                <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <i class="fas fa-file-export text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">১৫+ ফাইল ফরমেট</h3>
+                <p class="text-gray-300 mb-4 bengali">
+                    SVG, PNG, PDF, AI, PSD, Figma - সব ফরমেটে এক্সপোর্ট করুন। 
+                    কমার্শিয়াল লাইসেন্স সহ।
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-sm">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                        <span>হাই-রেজোলিউশন এক্সপোর্ট</span>
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                        <span>লেয়ারড PSD/AI ফাইল</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700 hover:border-green-500 transition group">
+                <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <i class="fas fa-users text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">টিম কলাবোরেশন</h3>
+                <p class="text-gray-300 mb-4 bengali">
+                    আপনার টিমের সাথে একসাথে কাজ করুন। রিয়েল-টাইম এডিটিং, 
+                    কমেন্টস এবং ভিজ্যুয়াল ফিডব্যাক।
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-sm">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                        <span>৫ জন পর্যন্ত ফ্রি টিম</span>
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                        <span>ভার্সন কন্ট্রোল</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How to Use Section -->
+<section id="how-to-use" class="py-20 px-4">
+    <div class="container mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">কিভাবে ব্যবহার করবেন?</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto bengali">
+                মাত্র ৩টি সহজ ধাপে প্রফেশনাল ডিজাইন তৈরি করুন
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Step 1 -->
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-xl font-bold">
+                    ১
+                </div>
+                <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700 h-full pt-12">
+                    <h3 class="text-xl font-bold mb-4">ব্রিফ লিখুন</h3>
+                    <p class="text-gray-300 mb-6 bengali">
+                        আপনার ডিজাইন আইডিয়া বাংলা বা ইংরেজিতে লিখুন। 
+                        উদাহরণ: "একটি টেক স্টার্টআপের জন্য মডার্ন লোগো চাই, নীল রং ব্যবহার করে"
+                    </p>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <p class="text-sm text-gray-300 italic bengali">
+                            "আমার ফ্যাশন ব্র্যান্ডের জন্য লোগো চাই, লাল এবং সোনালি রং ব্যবহার করে..."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-xl font-bold">
+                    ২
+                </div>
+                <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700 h-full pt-12">
+                    <h3 class="text-xl font-bold mb-4">AI জেনারেট করুন</h3>
+                    <p class="text-gray-300 mb-6 bengali">
+                        AI আপনার ব্রিফ পড়ে ডিজাইন তৈরি করবে। 
+                        আপনি কালার, ফন্ট, স্টাইল কাস্টমাইজ করতে পারবেন।
+                    </p>
+                    <div class="flex justify-center">
+                        <div class="w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center animate-pulse">
+                            <i class="fas fa-robot text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center text-xl font-bold">
+                    ৩
+                </div>
+                <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700 h-full pt-12">
+                    <h3 class="text-xl font-bold mb-4">ডাউনলোড করুন</h3>
+                    <p class="text-gray-300 mb-6 bengali">
+                        আপনার পছন্দমত ফরমেটে ডাউনলোড করুন। 
+                        SVG, PNG, PDF, AI, PSD, Figma - যেকোনো ফরমেট।
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-xs">SVG</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-xs">PNG</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-xs">PDF</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-xs">AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="text-center mt-16">
+            <button onclick="startCreating()" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 rounded-xl text-lg font-bold transition-all transform hover:scale-105">
+                <i class="fas fa-play mr-3"></i>
+                এখনই শুরু করুন (ফ্রি)
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Design Generator -->
+<section class="py-20 px-4 bg-gray-900/50">
+    <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto bg-gray-800/30 rounded-2xl p-8 border border-gray-700">
+            <h2 class="text-3xl font-bold mb-8 text-center">ডিজাইন জেনারেটর</h2>
+            
+            <!-- Brief Input -->
+            <div class="mb-8">
+                <label class="block text-lg font-medium mb-4 bengali">আপনার ডিজাইন আইডিয়া লিখুন</label>
+                <textarea 
+                    id="designBrief"
+                    placeholder="উদাহরণ: 'আমার কফি শপের জন্য একটি ভিনটেজ স্টাইলের লোগো চাই, বাদামী এবং ক্রিম রং ব্যবহার করে...'"
+                    class="w-full h-48 p-4 bg-gray-900 border border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none bengali"
+                ></textarea>
+                <div class="text-right text-sm text-gray-400 mt-2">
+                    <span id="charCount">0</span>/500 অক্ষর
+                </div>
+            </div>
+            
+            <!-- Quick Templates -->
+            <div class="mb-8">
+                <label class="block text-lg font-medium mb-4">কুইক টেমপ্লেট</label>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="loadTemplate('tech')" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition bengali">
+                        <i class="fas fa-laptop-code mr-2"></i>টেক স্টার্টআপ
+                    </button>
+                    <button onclick="loadTemplate('restaurant')" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition bengali">
+                        <i class="fas fa-utensils mr-2"></i>রেস্টুরেন্ট
+                    </button>
+                    <button onclick="loadTemplate('fashion')" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition bengali">
+                        <i class="fas fa-tshirt mr-2"></i>ফ্যাশন ব্র্যান্ড
+                    </button>
+                    <button onclick="loadTemplate('education')" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition bengali">
+                        <i class="fas fa-graduation-cap mr-2"></i>এডুকেশন
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Style Options -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div>
+                    <label class="block text-sm font-medium mb-2">ডিজাইন স্টাইল</label>
+                    <select class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2">
+                        <option>মডার্ন</option>
+                        <option>মিনিমাল</option>
+                        <option>ভিনটেজ</option>
+                        <option>জিওমেট্রিক</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">প্রধান রং</label>
+                    <input type="color" value="#6366f1" class="w-full h-10 rounded-lg cursor-pointer">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">ফাইল ফরমেট</label>
+                    <select class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2">
+                        <option>SVG</option>
+                        <option>PNG</option>
+                        <option>PDF</option>
+                        <option>AI (Adobe)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">রেজোলিউশন</label>
+                    <select class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2">
+                        <option>HD (1920x1080)</option>
+                        <option>4K (4096x4096)</option>
+                        <option>Print Ready</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Generate Button -->
+            <div class="text-center">
+                <button onclick="generateDesign()" class="px-12 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 rounded-xl text-xl font-bold transition-all transform hover:scale-105">
+                    <i class="fas fa-bolt mr-3"></i>
+                    AI দিয়ে ডিজাইন তৈরি করুন
+                </button>
+                <p class="text-gray-400 text-sm mt-3 bengali">
+                    ফ্রি ট্রায়ালে ১০টি ডিজাইন তৈরি করতে পারবেন
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="py-20 px-4">
+    <div class="container mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">সাশ্রয়ী মূল্যের প্যাকেজ</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto bengali">
+                আপনার প্রয়োজন অনুযায়ী প্ল্যান সিলেক্ট করুন। সব প্ল্যানে ফ্রি ট্রায়াল রয়েছে।
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Free Plan -->
+            <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-2">ফ্রি</h3>
+                    <div class="text-4xl font-bold mb-2">৳০<span class="text-lg text-gray-400">/মাস</span></div>
+                    <p class="text-gray-400 bengali">ছাত্র ও ছোট প্রজেক্টের জন্য</p>
+                </div>
+                
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">১০টি ডিজাইন/মাস</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">বেসিক ফাইল ফরমেট</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">HD রেজোলিউশন</span>
+                    </li>
+                    <li class="flex items-center text-gray-500">
+                        <i class="fas fa-times mr-3"></i>
+                        <span class="bengali">কমার্শিয়াল লাইসেন্স</span>
+                    </li>
+                </ul>
+                
+                <button onclick="selectPlan('free')" class="w-full py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition">
+                    বর্তমান প্ল্যান
+                </button>
+            </div>
+            
+            <!-- Pro Plan -->
+            <div class="bg-gradient-to-b from-blue-900/30 to-purple-900/30 p-8 rounded-2xl border border-blue-500 relative transform scale-105">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        জনপ্রিয়
+                    </span>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-2">প্রো</h3>
+                    <div class="text-4xl font-bold mb-2">৳৪৯৯<span class="text-lg text-gray-400">/মাস</span></div>
+                    <p class="text-gray-300 bengali">ফ্রিল্যান্সার ও বিজনেসের জন্য</p>
+                </div>
+                
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">আনলিমিটেড ডিজাইন</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">সকল ফাইল ফরমেট</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">৪K রেজোলিউশন</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">কমার্শিয়াল লাইসেন্স</span>
+                    </li>
+                </ul>
+                
+                <button onclick="selectPlan('pro')" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 rounded-lg font-bold transition">
+                    প্রো প্ল্যান নিন
+                </button>
+            </div>
+            
+            <!-- Team Plan -->
+            <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-2">টিম</h3>
+                    <div class="text-4xl font-bold mb-2">৳১,২৯৯<span class="text-lg text-gray-400">/মাস</span></div>
+                    <p class="text-gray-400 bengali">এজেন্সি ও বড় টিমের জন্য</p>
+                </div>
+                
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">৫ জন টিম মেম্বার</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">প্রিয়োরিটি সাপোর্ট</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">ব্র্যান্ড কিট ম্যানেজমেন্ট</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-green-400 mr-3"></i>
+                        <span class="bengali">কাস্টম ডেভেলপমেন্ট</span>
+                    </li>
+                </ul>
+                
+                <button onclick="selectPlan('team')" class="w-full py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition">
+                    টিম প্ল্যান নিন
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 px-4 bg-gray-900/50">
+    <div class="container mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">যোগাযোগ করুন</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto bengali">
+                কোনো প্রশ্ন বা সহায়তা প্রয়োজন? আমরা ২৪ ঘন্টার মধ্যে রিপ্লাই দেবো
+            </p>
+        </div>
+        
+        <div class="max-w-2xl mx-auto">
+            <form id="contactForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 bengali">আপনার নাম</label>
+                        <input type="text" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">ইমেইল এড্রেস</label>
+                        <input type="email" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-2 bengali">বিষয়</label>
+                    <input type="text" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-2 bengali">মেসেজ</label>
+                    <textarea rows="5" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 rounded-lg text-lg font-bold transition">
+                    <i class="fas fa-paper-plane mr-3"></i>
+                    মেসেজ পাঠান
+                </button>
+            </form>
+            
+            <!-- Contact Info -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                <div class="text-center p-6 bg-gray-800/30 rounded-xl">
+                    <div class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-blue-400 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold mb-2">ইমেইল</h4>
+                    <p class="text-gray-300">support@designbrief.pro</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-800/30 rounded-xl">
+                    <div class="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone text-green-400 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 bengali">ফোন নম্বর</h4>
+                    <p class="text-gray-300">+৮৮০১৭XXXXXXXX</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-800/30 rounded-xl">
+                    <div class="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-purple-400 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 bengali">অপারেটিং আওয়ার</h4>
+                    <p class="text-gray-300">সকাল ৯টা - রাত ১১টা</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 py-12 px-4 border-t border-gray-800">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Company Info -->
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">DesignBrief Pro</h3>
+                        <p class="text-sm text-gray-400">AI ডিজাইন জেনারেটর</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm mb-4 bengali">
+                    বাংলাদেশের প্রথম AI-পাওয়ার্ড ডিজাইন প্লাটফর্ম। 
+                    সহজে প্রফেশনাল ডিজাইন তৈরি করুন।
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-400 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">কুইক লিংক</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-gray-300 hover:text-blue-400 transition bengali">হোম</a></li>
+                    <li><a href="#features" class="text-gray-300 hover:text-blue-400 transition bengali">ফিচার</a></li>
+                    <li><a href="#how-to-use" class="text-gray-300 hover:text-blue-400 transition bengali">ব্যবহার করুন</a></li>
+                    <li><a href="#pricing" class="text-gray-300 hover:text-blue-400 transition bengali">প্রাইসিং</a></li>
+                    <li><a href="#contact" class="text-gray-300 hover:text-blue-400 transition bengali">যোগাযোগ</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">রিসোর্সেস</h4>
+                <ul class="space-y-2">
+                    <li><a href="privacy.html" class="text-gray-300 hover:text-blue-400 transition bengali">গোপনীয়তা নীতি</a></li>
+                    <li><a href="terms.html" class="text-gray-300 hover:text-blue-400 transition bengali">সেবা শর্তাবলী</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition bengali">ব্লগ</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition bengali">টিউটোরিয়াল</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition bengali">এফএকিউ</a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">নিউজলেটার</h4>
+                <p class="text-gray-300 text-sm mb-4 bengali">
+                    নতুন ফিচার এবং অফার সম্পর্কে জানতে সাবস্ক্রাইব করুন
+                </p>
+                <div class="flex">
+                    <input type="email" placeholder="আপনার ইমেইল" class="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg px-4 py-2 focus:outline-none">
+                    <button class="bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 rounded-r-lg font-medium">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="border-t border-gray-800 pt-8 text-center">
+            <p class="text-gray-400 text-sm bengali">
+                &copy; <span id="currentYear"></span> DesignBrief Pro. সকল অধিকার সংরক্ষিত। 
+                বাংলাদেশে তৈরি 🇧🇩
+            </p>
+            <p class="text-gray-500 text-xs mt-2">
+                Made with <i class="fas fa-heart text-red-500"></i> for Bangladeshi designers
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Modals -->
+<!-- Login Modal -->
+<div id="loginModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 rounded-2xl p-8 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold">লগইন করুন</h3>
+            <button onclick="closeLoginModal()" class="text-gray-400 hover:text-white">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">ইমেইল এড্রেস</label>
+                <input type="email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">পাসওয়ার্ড</label>
+                <input type="password" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3">
+            </div>
+            
+            <div class="flex items-center justify-between">
+                <label class="flex items-center">
+                    <input type="checkbox" class="rounded">
+                    <span class="ml-2 text-sm bengali">রিমেম্বর মি</span>
+                </label>
+                <a href="#" class="text-blue-400 text-sm hover:underline bengali">পাসওয়ার্ড ভুলে গেছেন?</a>
+            </div>
+            
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-bold">
+                লগইন করুন
+            </button>
+            
+            <div class="text-center text-sm text-gray-400">
+                <span class="bengali">অ্যাকাউন্ট নেই?</span>
+                <button onclick="showSignupModal()" class="text-blue-400 hover:underline ml-2 bengali">সাইন আপ করুন</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signupModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 rounded-2xl p-8 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold">সাইন আপ করুন</h3>
+            <button onclick="closeSignupModal()" class="text-gray-400 hover:text-white">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        
+        <form id="signupForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2 bengali">আপনার নাম</label>
+                <input type="text" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">ইমেইল এড্রেস</label>
+                <input type="email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2 bengali">পাসওয়ার্ড</label>
+                <input type="password" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2 bengali">পাসওয়ার্ড নিশ্চিত করুন</label>
+                <input type="password" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3">
+            </div>
+            
+            <label class="flex items-start">
+                <input type="checkbox" required class="mt-1 rounded">
+                <span class="ml-2 text-sm bengali">
+                    আমি <a href="terms.html" class="text-blue-400">সেবা শর্তাবলী</a> এবং 
+                    <a href="privacy.html" class="text-blue-400">গোপনীয়তা নীতি</a> মেনে নিচ্ছি
+                </span>
+            </label>
+            
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-bold">
+                অ্যাকাউন্ট তৈরি করুন
+            </button>
+            
+            <div class="text-center text-sm text-gray-400">
+                <span class="bengali">ইতিমধ্যে অ্যাকাউন্ট আছে?</span>
+                <button onclick="showLoginModal()" class="text-blue-400 hover:underline ml-2 bengali">লগইন করুন</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-xl border border-gray-700 transform translate-y-10 opacity-0 transition-all duration-300 z-50">
+    <div class="flex items-center">
+        <i class="fas fa-check-circle text-green-400 mr-3"></i>
+        <span id="toastMessage">সফলভাবে সম্পন্ন হয়েছে!</span>
+    </div>
+</div>
+
+<!-- JavaScript Files -->
+<script src="js/main.js"></script>
+<script src="js/user.js"></script>
+<script src="js/vector.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/file-upload.js"></script>
+
+<script>
+    // Inline JavaScript for basic functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Character counter for textarea
+        const designBrief = document.getElementById('designBrief');
+        const charCount = document.getElementById('charCount');
+        
+        if (designBrief && charCount) {
+            designBrief.addEventListener('input', function() {
+                charCount.textContent = this.value.length;
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    });
+    
+    // Modal functions
+    function showLoginModal() {
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+    
+    function closeLoginModal() {
+        document.getElementById('loginModal').classList.add('hidden');
+    }
+    
+    function showSignupModal() {
+        document.getElementById('signupModal').classList.remove('hidden');
+    }
+    
+    function closeSignupModal() {
+        document.getElementById('signupModal').classList.add('hidden');
+    }
+    
+    // Template functions
+    function loadTemplate(type) {
+        const templates = {
+            tech: 'আমার টেক স্টার্টআপের জন্য মডার্ন লোগো চাই। নীল এবং সাদা রং ব্যবহার করবেন। কোম্পানির নাম "TechBangla"।',
+            restaurant: 'আমার রেস্টুরেন্টের জন্য লোগো চাই। খাবারের সাথে সম্পর্কিত আইকন ব্যবহার করবেন। লাল এবং সোনালি রং।',
+            fashion: 'আমার ফ্যাশন ব্র্যান্ডের জন্য এলিগেন্ট লোগো চাই। মিনিমাল ডিজাইন, কালো এবং সোনালি রং।',
+            education: 'আমার শিক্ষা প্লাটফর্মের জন্য লোগো চাই। বই এবং জ্ঞানের প্রতীক ব্যবহার করবেন। নীল এবং সবুজ রং।'
+        };
+        
+        if (designBrief && templates[type]) {
+            designBrief.value = templates[type];
+            charCount.textContent = templates[type].length;
+            showToast('টেমপ্লেট লোড করা হয়েছে!');
+        }
+    }
+    
+    // Toast function
+    function showToast(message, type = 'success') {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const icon = toast.querySelector('i');
+        
+        toastMessage.textContent = message;
+        
+        // Set icon based on type
+        if (type === 'success') {
+            icon.className = 'fas fa-check-circle text-green-400 mr-3';
+        } else if (type === 'error') {
+            icon.className = 'fas fa-exclamation-circle text-red-400 mr-3';
+        } else if (type === 'info') {
+            icon.className = 'fas fa-info-circle text-blue-400 mr-3';
+        }
+        
+        toast.style.transform = 'translateY(0)';
+        toast.style.opacity = '1';
+        
+        setTimeout(() => {
+            toast.style.transform = 'translateY(10px)';
+            toast.style.opacity = '0';
+        }, 3000);
+    }
+    
+    // Other functions
+    function startCreating() {
+        document.getElementById('designBrief').focus();
+        showToast('ডিজাইন তৈরি শুরু করুন!');
+    }
+    
+    function scrollToFeatures() {
+        document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function generateDesign() {
+        const brief = document.getElementById('designBrief').value;
+        if (!brief.trim()) {
+            showToast('আপনার ডিজাইন আইডিয়া লিখুন', 'error');
+            return;
+        }
+        
+        showToast('AI ডিজাইন তৈরি করছে...', 'info');
+        
+        // Simulate AI generation
+        setTimeout(() => {
+            showToast('ডিজাইন তৈরি সম্পন্ন! ডাউনলোড করুন।', 'success');
+        }, 2000);
+    }
+    
+    function selectPlan(plan) {
+        const plans = {
+            free: 'ফ্রি',
+            pro: 'প্রো',
+            team: 'টিম'
+        };
+        
+        showToast(`${plans[plan]} প্ল্যান সিলেক্ট করা হয়েছে!`);
+    }
+    
+    // Form submissions
+    document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showToast('লগইন রিকোয়েস্ট পাঠানো হয়েছে');
+        closeLoginModal();
+    });
+    
+    document.getElementById('signupForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showToast('অ্যাকাউন্ট তৈরি রিকোয়েস্ট পাঠানো হয়েছে');
+        closeSignupModal();
+    });
+    
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showToast('আপনার মেসেজ পাঠানো হয়েছে!');
+        e.target.reset();
+    });
+</script>
+
+</body>
+</html>
